@@ -45,7 +45,7 @@ export default {
         series: [
           {
             name: "Number of People",
-            data: [], //age
+            data: [], //number of people falling under a blood group
           },
         ],
       },
@@ -82,7 +82,7 @@ export default {
         series: [
           {
             name: "Number of People",
-            data: [], //number of people who fell in the same age group
+            data: [], //number of people who fall in the same age group
           },
         ],
       },
@@ -90,9 +90,6 @@ export default {
   },
   mounted() {
     this.getdata();
-
-    // return unique characters in
-    // console.log(new Set(this.chartOptions.xAxis.categories));
   },
 
   methods: {
@@ -104,14 +101,13 @@ export default {
         )
         .then((response) => {
           // Storing fetched data in localStorage by storing it as an object
-
           localStorage.setItem("Bloodgroup", JSON.stringify(response.data));
         });
 
       //retrieving it from local storage
       let bloodgroupdata = localStorage.getItem("Bloodgroup");
 
-      //converting and returning it back as a string
+      //converting and returning it back as an object
       let convertedbloodgroupdata = JSON.parse(bloodgroupdata);
       this.formatdata(convertedbloodgroupdata);
     },
@@ -126,12 +122,15 @@ export default {
 
       /**array that will contain formatted values of data for only field age */
       let age = [];
+
+      /**pushing formatted data from the request made */
       for (let key in data) {
         bloodgroup.push({ ...data[key] });
       }
 
       /**formatting it and selecting only the bloodgroup and age  */
       for (let k in bloodgroup) {
+        /**This will contain values for the blood group in the data returned */
         newbloodgroup.push(bloodgroup[k].bloodtype);
 
         /**This will contain values for the age of the people in the data returned */
