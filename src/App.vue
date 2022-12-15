@@ -70,7 +70,7 @@ export default {
           // when the person age falls between the range of 18-29-->Young Adult
           // when the person age falls between the range of 29 and above-->Adult
 
-          categories: ["Child", "Young Adult", "Adult"],
+          categories: ["Child (1-17)", "Young Adult (18-29)", "Adult (30 and above)"],
         },
 
         yAxis: {
