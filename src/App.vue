@@ -106,14 +106,14 @@ export default {
           // Storing fetched data in localStorage by storing it as an object
 
           localStorage.setItem("Bloodgroup", JSON.stringify(response.data));
-
-          //retrieving it from local storage
-          let bloodgroupdata = localStorage.getItem("Bloodgroup");
-
-          //converting and returning it back as a string
-          let convertedbloodgroupdata = JSON.parse(bloodgroupdata);
-          this.formatdata(convertedbloodgroupdata);
         });
+
+      //retrieving it from local storage
+      let bloodgroupdata = localStorage.getItem("Bloodgroup");
+
+      //converting and returning it back as a string
+      let convertedbloodgroupdata = JSON.parse(bloodgroupdata);
+      this.formatdata(convertedbloodgroupdata);
     },
 
     /**format the data */
@@ -170,7 +170,6 @@ export default {
 
       //move set containing the number of bloodgroup that repeated into the data array for bar chart
       this.chartOptions.series[0].data = Object.values(number_of_ppl_for_bloodgroupcount);
-      console.log(this.chartOptions.series[0].data);
 
       /**Filter to return totalcount of people that are between the ages of 1-17 = Child*/
 
