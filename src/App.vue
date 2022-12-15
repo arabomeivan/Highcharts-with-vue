@@ -102,14 +102,26 @@ export default {
         .then((response) => {
           // Storing fetched data in localStorage by storing it as an object
           localStorage.setItem("Bloodgroup", JSON.stringify(response.data));
+
+          //retrieving it from local storage
+          let bloodgroupdata = localStorage.getItem("Bloodgroup");
+
+          //converting and returning it back as an object
+          let convertedbloodgroupdata = JSON.parse(bloodgroupdata);
+          this.formatdata(convertedbloodgroupdata);
+        })
+        .catch((error) => {
+          if (error) {
+            //retrieving it from local storage to make it work offline
+            let bloodgroupdata = localStorage.getItem("Bloodgroup");
+
+            //converting and returning it back as an object
+            let convertedbloodgroupdata = JSON.parse(bloodgroupdata);
+            this.formatdata(convertedbloodgroupdata);
+          } else {
+            console.log(error);
+          }
         });
-
-      //retrieving it from local storage
-      let bloodgroupdata = localStorage.getItem("Bloodgroup");
-
-      //converting and returning it back as an object
-      let convertedbloodgroupdata = JSON.parse(bloodgroupdata);
-      this.formatdata(convertedbloodgroupdata);
     },
 
     /**format the data */
